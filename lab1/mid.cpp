@@ -1,17 +1,24 @@
 #include <iostream>
+#include <iomanip>
 
 int main() {
-    long int inp;
-    long long int cubed;
-    long long int squared;
+    double input, squared, cubed;
     
-    std::cout << "Enter x: ";
-    std::cin >> inp;
-    
-    squared = inp * inp;
-    cubed = inp * inp * inp;
-    
-    std::cout << "\nX^2 = " << squared << "\nX^3 = " << cubed << "\n";
+    std::cout << "Введите x: ";
+    std::cin >> input; 
+   
+    /* проверка на невереный ввод */
+    if (std::cin.fail()) {
+        /* выход из программы если ввод не верный */
+        std::cout << "Ошибка ввода\n";
+        return 0;
+    }
+    /* вычесление квадрата и куба числа */
+    squared = input * input;
+    cubed = input * input * input;
+
+    /* установка точности и вывод результата */
+    std::cout << std::setprecision(12) << "Квадрат числа " << input << " равен " << squared << "\nКуб числа " << input << " равен " << cubed << "\n";
     
     return 0;
 }

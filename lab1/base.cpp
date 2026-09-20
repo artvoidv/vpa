@@ -1,15 +1,21 @@
 #include <iostream>
 
 int main() {
-    // unsigned because -x * -x = x * x
-    unsigned int inp;
-    unsigned long long int res;
+    double input;
+    double result;
 
-    std::cout << "Enter x: ";
-    std::cin >> inp;
+    std::cout << "Введите x: ";
+    std::cin >> input;
+
+    if (std::cin.fail()) {
+        std::cout << "Ошибка ввода" << "\n";
+        return 0;
+    }    
     
-    res = inp * inp;
-    std::cout << "\n" << inp << "^2 = " << res << "\n";
+    result = input * input;
+    
+    std::cout.precision(10);
+    std::cout << "Квадрат числа " << input << " равен " << result << "\n";
 
     return 0;
 }
