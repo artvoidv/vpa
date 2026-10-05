@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# ./run
+
+echo "base:"
+printf -- '0\n' | ./base
+echo " "
+printf -- '1000\n' | ./base
+echo " "
+printf -- '-5\n' | ./base
+echo " "
+
+echo "mid: {0.5 15 46} {25 0 2.05} {4 1085.4 14}"
+printf -- '0.5\n15\n46\n' | ./mid
+echo " "
+printf -- '25\n0\n2.05\n' | ./mid
+echo " "
+printf -- '4\n1085.4\n14\n' | ./mid
+echo " "
+
+echo "high: {10.6 6003.525} {0 50.23} {0 0}"
+printf -- '10.6\n6003.525\n' | ./high
+echo " "
+printf -- '0\n50.23\n' | ./high
+echo " "
+printf -- '0\n0\n' | ./high
+echo " "
