@@ -7,6 +7,7 @@ int main()
     std::cout << "Введите километры: ";
 #endif
     std::cin >> kilometers;
+    std::cout.precision(10);
     std::cout << kilometers << " километров = " << kilometers * 1000 << " метров\n";
     return 0;
 }

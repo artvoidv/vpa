@@ -16,6 +16,7 @@ int main()
         volume = volume * sides[i];
     }
 
+    std::cout.precision(10);
     std::cout << "Объем параллелепипеда: " << volume << "\n";
     std::cout << "Площадь параллелепипеда: " << static_cast<double>(2) * (sides[0] * sides[1] + sides[1] * sides[2] + sides[0] * sides[2]) << "\n";
     return 0;
