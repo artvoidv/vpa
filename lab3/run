@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for bin in base mid high; do
+    g++ -Dtest -Wall -Wextra -Wpedantic -std=c++11 -o $bin $bin.cpp
+done
+
