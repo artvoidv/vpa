@@ -1,0 +1,7 @@
+#!/bin/sh
+
+g++ -std=c++11 -Wall -Wextra -Wpedantic -DarrSIZE=4 -Dtest high.cpp -o high
+
+while ! ./high; do
+    :
+done
