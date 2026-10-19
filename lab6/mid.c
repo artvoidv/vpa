@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-#define arrSIZE 20
+#define arrSIZE 15
 
 int
 main()

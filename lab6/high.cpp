@@ -1,7 +1,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#ifdef test
 #include <unistd.h>
+#endif
 
 #ifndef arrSIZE
 #define arrSIZE 20
@@ -11,7 +13,11 @@ int
 main()
 {
     int arr[arrSIZE];
-    std::srand((unsigned)(std::time(NULL)) ^ getpid());
+#ifdef test
+    std::srand((unsigned)(std::time(NULL)) + getpid());
+#else
+    std::srand((unsigned)(std::time(NULL)));
+#endif
     for (int i = 0; i < arrSIZE; i++) {
         arr[i] = 1+(std::rand() % 100);
 #ifdef test
@@ -24,7 +30,7 @@ main()
             continue;
         } else {
             std::cout << "Массив не палиндром\n";
-            return 1;
+            return 0;
         }
     }
     std::cout << "Массив палиндром\n";
