@@ -1,13 +1,23 @@
 #include <stdio.h>
+#include <unistd.h>
 
 int
 main()
 {
-    int start = 10, end = 44, jump = 5;
-    printf("y=(x-2)^2\n");
-    printf("%4c | %c\n", 'x', 'y');
-    for (int i = start; i < end; i+=jump) {
-        printf("%4d | %d\n", i, (i-2) * (i-2));
+    double start, end, jump;
+    int n;
+    puts("Y = (X-2)^2\n");
+    printf("Введите начальное значение, конечное и шаг через пробел\n");
+    n = scanf("%lf %lf %lf", &start, &end, &jump);
+    if (n != 3) {
+        return 1;
     }
-    return 0;
+    if (start>end || !(jump>0)) {
+        puts("Введено неверное значение\n");
+        return 1;
+    }
+    printf("%20s | %s\n", "X", "Y");
+    for (double i = start; i < end; i+=jump) {
+        printf("%20.5lf | %lf\n", i , (double)(i-2.0)*(i-2.0));
+    }
 }

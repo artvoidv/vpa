@@ -1,24 +1,46 @@
 #include <stdio.h>
-#include <limits.h>
+#include <unistd.h>
+#include <math.h>
+
+int
+iseq(double a, double b)
+{
+    double EPSILON = 1E-9;
+    if (fabs(a-b) < EPSILON) return 1;
+    return 0;
+}
 
 int
 main()
 {
-    int start = 10, end = 44, jump = 5;
-    double min = INT_MAX, max = 0;
-    double result;
-    printf("y=1/(x^2-1)\n");
-    printf("%9c | %c\n", 'x', 'y');
-    for (int i = start; i < end; i+=jump) {
-        result = 1.0/((double)(i*i)-1.0);
-        if (result >= max) {
-            max = result;
-        }
-        if (result <= min) {
-            min = result;
-        }
-        printf("%9d | %.8lf\n", i, result);
+    double start, end, jump, min, max;
+    int n, j;
+    n = j = 0;
+    printf("Введите начальное, конечное значение и шаг\n");
+    n = scanf("%lf %lf %lf", &start, &end, &jump);
+    if (n != 3) {
+        puts("Недостаточно значений\n");
+        return 1; 
     }
-    printf("min: %.8lf\nmax: %.8lf\n", min, max);
+    if (start>end || !(jump>0)) {
+        puts("Введено неверное значение\n");
+        return 1;
+    }
+    puts("Y = 1/((X^2)+1)\n");
+    printf("%20s | %s\n", "X", "Y");
+    for (double i = start; i < end; i+=jump,j++) {
+        double tmp = 1/((i*i)+1);
+        printf("%20.10lf | %20.10lf\n", i, tmp);
+        if (j != 0) {
+            if (tmp > max) {
+                max = tmp;
+            } else {
+                min = tmp;
+            }
+        } else {
+            max = min = tmp;
+        }
+    }
+    printf("максимальное: %19.10lf\nминимальное: %20.10lf\nколичество операций: %d\n", max, min, j);
     return 0;
 }
