@@ -1,0 +1,24 @@
+#!/bin/sh
+
+printf '' > results_optimized
+printf '' > results_optimized_rand
+printf '' > results_unoptimized
+printf '' > results_unoptimized_rand
+printf '' > input
+
+gcc -std=c99 -Wall -Wextra -Wpedantic geninput.c -o geninput || exit 1
+
+gcc -std=c99 -Wall -Wextra -Wpedantic -Dtest mid.c -o unoptimized -lrt -lm || exit 1
+gcc -std=c99 -Wall -Wextra -Wpedantic -Dtest mid2.c -o optimized -lrt -lm || exit 1
+
+i=0
+while [ "$i" -lt 20000 ]; do
+    ./geninput > input
+    printf '%s\n' '-10000 10000 2' | ./optimized >> results_optimized
+    ./optimized < input >> results_optimized_rand
+    printf '%s\n' '-10000 10000 2' | ./unoptimized >> results_unoptimized
+    ./unoptimized < input >> results_unoptimized_rand
+    i=$((i + 1))
+done
+
+rm optimized geninput unoptimized
