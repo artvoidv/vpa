@@ -2,10 +2,11 @@
 #include <unistd.h>
 #include <math.h>
 
+#define EPSILON 1E-9
+
 int
 iseq(double a, double b)
 {
-    double EPSILON = 1E-9;
     if (fabs(a-b) < EPSILON) return 1;
     return 0;
 }
@@ -17,24 +18,30 @@ main()
     int n, j;
     int isxmeetzero = 0;
     n = j = 0;
-    printf("Введите начальное, конечное значение и шаг\n");
+#ifndef test
+    puts("Введите начальное, конечное значение и шаг через пробел");
+#endif
     n = scanf("%lf %lf %lf", &start, &end, &jump);
     if (n != 3) {
-        puts("Недостаточно значений\n");
+        puts("Недостаточно значений");
         return 1; 
     }
     if (start>end || !(jump>0)) {
-        puts("Введено неверное значение\n");
+        puts("Введено неверное значение");
         return 1;
     }
     if (start + end == 0 && (iseq(end,(double)((int)end)) && ((int)end)%((int)jump)==0)) {
         isxmeetzero = 1;
     }
-    puts("Y = 1/((X^2)+1)\n");
+#ifndef test
+    puts("Y = 1/((X^2)+1)");
     printf("%20s | %s\n", "X", "Y");
-    for (double i = start; i < end; i+=jump,j++) {
+#endif
+    for (double i = start; i <= end; i+=jump,j++) {
         double tmp = 1/((i*i)+1);
+#ifndef test
         printf("%20.10lf | %20.10lf\n", i, tmp);
+#endif
         if (j == 0) {
             max = min = tmp;
         } else {
@@ -52,6 +59,8 @@ main()
             }
         }
     }
-    printf("максимальное: %19.10lf\nминимальное: %20.10lf\nколичество операций: %d\n", isxmeetzero ? 2 : max, min, j);
+#ifndef test
+    printf("максимальное: %19.10lf\nминимальное: %20.10lf\nколичество операций: %d\n", isxmeetzero ? 1.0 : max, min, j);
+#endif
     return 0;
 }
