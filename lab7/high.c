@@ -40,7 +40,7 @@ main()
     if (n != 1) {
         return 1;
     }
-    row--; /* get index, humans count from 1 */
+    row--;
     if (row+1>ROWS) {
         puts("нет такой строки");
         return 1;
