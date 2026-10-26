@@ -7,18 +7,24 @@ int
 main()
 {
     int matrix[ROWS][COLS] = {0};
-    for (int i = 0; i<ROWS; i++) {
-        printf("Введите 3 эллемента матрицы строки %d через пробел\n", i+1);
-        scanf("%d %d %d", &matrix[i][0], &matrix[i][1], &matrix[i][2]);
-    }
-    unsigned char count = 0;
+    int n;
     for (int i = 0; i<ROWS; i++) {
         for (int j = 0; j<COLS; j++) {
-            if (matrix[i][j] < 0) {
-                count++;
+            printf("Введите эллемент матрицы %d,%d\n", i+1,j+1);
+            n = scanf("%d", &matrix[i][j]);
+            if (n != 1) {
+                return 1;
             }
         }
     }
-    printf("Количество отрицательных элементов: %d\n", (int)count);
+    int sum = 0;
+    for (int i = 0; i<ROWS; i++) {
+        for (int j = 0; j<COLS; j++) {
+            if (matrix[i][j] < 0) {
+                sum += matrix[i][j];
+            }
+        }
+    }
+    printf("Сумма отрицательных элементов: %d\n", sum);
     return 0;
 }
