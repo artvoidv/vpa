@@ -18,11 +18,9 @@ int
 main()
 {
     double start, end, jump, min, max;
-    int n, j;
-    n = j = 0;
-#ifndef test
+    int n;
+    n = 0;
     puts("Введите начальное, конечное значение и шаг через пробел");
-#endif
     n = scanf("%lf %lf %lf", &start, &end, &jump);
     if (n != 3) {
         puts("Недостаточно значений");
@@ -32,37 +30,27 @@ main()
         puts("Введено неверное значение");
         return 1;
     }
-#ifndef test
     puts("Y = 1/((X^2)+1)");
     printf("%20s | %s\n", "X", "Y");
-#endif
-#ifdef test
-    struct timespec timer_s, timer_e;
-    clock_gettime(CLOCK_MONOTONIC, &timer_s);
-#endif
-    for (double i = start; i <= end; i+=jump,j++) {
+    for (double i = start; i <= end; i+=jump) {
         double tmp = 1/((i*i)+1);
-#ifndef test
         printf("%20.10lf | %20.10lf\n", i, tmp);
-#endif
-        if (j != 0) {
-            if (tmp > max) {
-                max = tmp;
-            }
-            if (tmp < min) {
-                min = tmp;
-            }
-        } else {
-            max = min = tmp;
+    }
+
+    double last = start + (floor(end/jump) * jump);
+    if (start < 0 && last > 0) {
+        max = 1.0;
+        min = 1/((start*start)+1);
+        double min2 = 1/((last*last)+1);
+        if (min > min2) {
+            min = min2;
         }
     }
-#ifdef test
-    clock_gettime(CLOCK_MONOTONIC, &timer_e);
-    double timer_f = (timer_e.tv_sec-timer_s.tv_sec) + (timer_e.tv_nsec-timer_s.tv_nsec)*1e-9;
-    printf("%.6lf\n", timer_f);
-#endif
-#ifndef test
-    printf("максимальное: %19.10lf\nминимальное: %20.10lf\nколичество операций: %d\n", max, min, j);
-#endif
+    if (last < 0) {
+        min = 1/((start*start)+1);
+        max = 1/((last*last)+1);
+    }
+    printf("максимальное: %19.10lf\nминимальное: %20.10lf\n\n", max, min);
+    printf("last : %lf\n", last);
     return 0;
 }
