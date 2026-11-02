@@ -50,7 +50,7 @@ main(void)
 #ifdef imstupid
     printf("%s\n---\n", str);
 #endif
-    printf("Digits: %d\nNumbers: %d\n", digits, numbers);
+    printf("Цифр: %d\nЧисел: %d\n", digits, numbers);
     free(str);
     return 0;
 }

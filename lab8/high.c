@@ -71,6 +71,7 @@ main(void)
 #ifdef imstupid
     printf("%s\n---\n", str);
 #endif
+    printf("Числа в строке:");
     for (size_t i = 0; i < n; i++) {
         printf(" %d ", nums[i]);
     }
