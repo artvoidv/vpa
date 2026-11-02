@@ -54,7 +54,7 @@ main(void)
 #ifdef imstupid
     printf("%s\n---\n", str);
 #endif
-    printf("number of uppercase words: %d\n", uppercase_words);
+    printf("Количество слов начинающихся с большой буквы: %d\n", uppercase_words);
     free(str);
     return 0;
 }
