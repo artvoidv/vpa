@@ -1,0 +1,6 @@
+#!/bin/sh
+for f do
+    o=${f%.c}
+    [ -e "$o" ] && continue
+    cc -std=c99 -Wall -Wextra -Wpedantic -o "$o" "$f" || exit 1
+done
