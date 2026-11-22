@@ -1,0 +1,6 @@
+#!/bin/sh
+for f do
+    o=${f%.cpp}
+    [ -e "$o" ] && continue
+    clang++ -std=c++11 -Wall -Wextra -Wpedantic -o "$o" "$f" || exit 1
+done
