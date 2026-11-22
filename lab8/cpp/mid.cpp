@@ -17,10 +17,15 @@ main(void)
 
     uppercase = 0;
     i = 0;
-    for (; i < s.size(); ++i)
+    for (; i < s.size(); ++i) {
+        if (i == 0 && isupper(s[0])) {
+            ++uppercase;
+            continue;
+        }
         if (isupper(s[i]))
-            if (i-1 >= 0 && s[i-1] == ' ')
+            if (s[i-1] == ' ')
                 ++uppercase;
+    }
 
     std::cout << uppercase << '\n';
     return 0;
