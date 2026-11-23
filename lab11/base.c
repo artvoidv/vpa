@@ -1,9 +1,10 @@
 #include <stdio.h>
 
+#define vswap(a, b) vswap_(&a, &b)
 void
-vswap(int* a, int* b)
+vswap_(double *a, double *b)
 {
-    int t = *a;
+    double t = *a;
     *a = *b;
     *b = t;
 }
@@ -11,10 +12,16 @@ vswap(int* a, int* b)
 int
 main(void)
 {
-    int a = 10;
-    int b = -452;
-    printf("Оригинальные числа: %d %d\n", a, b);
-    vswap(&a, &b);
-    printf("Оригинальные переменные после swap: %d %d\n", a, b);
+    double a, b;
+    int n;
+    printf("Введите 2 числа: ");
+    n = scanf("%lf %lf", &a, &b);
+    if (n != 2) {
+        fputs("Ошибка ввода", stderr);
+        return 1;
+    }
+    printf("до vswap():    a: %lf b: %lf\n", a, b);
+    vswap(a, b);
+    printf("после vswap(): a: %lf b: %lf\n", a, b);
     return 0;
 }
