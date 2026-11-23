@@ -1,7 +1,8 @@
 #include <stdio.h>
 
+#define square(a) square_(&a)
 void
-square(int *a)
+square_(int *a)
 {
     *a = (*a) * (*a);
 }
@@ -16,8 +17,8 @@ main(void)
         fputs("Ошибка ввода", stderr);
         return 1;
     }
-    int o = a;
-    square(&a);
-    printf("%d^2 = %d\n", o, a);
+    printf("переменная a до square(): %d\n", a);
+    square(a);
+    printf("переменная a после square(): %d\n", a);
     return 0;
 }
